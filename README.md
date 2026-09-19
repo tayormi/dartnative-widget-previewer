@@ -6,9 +6,9 @@ Preview individual DartNative widgets in your browser or beside their source in 
 
 Browser previews use an interpreter. Choose **Run on iOS** to check the same widget with the DartNative engine on a local simulator.
 
-[![DartNative Widget Previewer demo](docs/media/demo-poster.jpg)](docs/media/demo.mp4)
+[![DartNative Widget Previewer demo](docs/media/demo-poster.jpg)](https://tayormi.github.io/dartnative-widget-previewer/)
 
-[Watch the 34-second demo](docs/media/demo.mp4) · [Captions](docs/media/demo.en.vtt)
+[Watch the 34-second demo](https://tayormi.github.io/dartnative-widget-previewer/) · [Captions](docs/media/demo.en.vtt)
 
 ## Requirements
 

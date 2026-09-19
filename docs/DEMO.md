@@ -4,9 +4,9 @@ Nineteen previews cover an isolated reading component, a small reading app, and 
 
 ## Watch the demo
 
-[![Widget preview, Dart source, and native comparison](media/demo-poster.jpg)](media/demo.mp4)
+[![Widget preview, Dart source, and native comparison](media/demo-poster.jpg)](https://tayormi.github.io/dartnative-widget-previewer/)
 
-[Play the demo](media/demo.mp4) · 34 seconds with narration · [Captions](media/demo.en.vtt)
+[Play the demo](https://tayormi.github.io/dartnative-widget-previewer/) · 34 seconds with narration · [Captions](media/demo.en.vtt)
 
 ## Start with one component
 

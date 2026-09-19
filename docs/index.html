@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A 34-second demo of DartNative Widget Previewer, from a Dart component to browser previews and native iOS comparison."
+    />
+    <title>DartNative Widget Previewer · Demo</title>
+    <link rel="icon" type="image/png" href="media/dartnative-logo.png" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+        color: #202733;
+        background: #f7f8fa;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 40px 24px;
+      }
+      main {
+        max-width: 1080px;
+        margin: auto;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+      header img {
+        flex: none;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(22px, 4vw, 32px);
+        line-height: 1.2;
+        letter-spacing: -0.7px;
+      }
+      header p {
+        margin: 6px 0 0;
+        color: #566074;
+      }
+      video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px #15203312;
+      }
+      a {
+        color: #245eac;
+        text-underline-offset: 3px;
+      }
+      a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+      }
+      .note {
+        color: #566074;
+        max-width: 760px;
+        margin: 24px 0;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color: #edf0f5;
+          background: #181a1e;
+        }
+        header p,
+        .note {
+          color: #b5bfce;
+        }
+        a {
+          color: #91bfff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="media/dartnative-logo.png" width="56" height="56" alt="" />
+        <div>
+          <h1>DartNative Widget Previewer</h1>
+          <p>34-second demo · Sound on · English captions available</p>
+        </div>
+      </header>
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        poster="media/demo-poster.jpg"
+        aria-label="DartNative Widget Previewer demo"
+      >
+        <source src="media/demo.mp4" type="video/mp4" />
+        <track src="media/demo.en.vtt" kind="captions" srclang="en" label="English" />
+        <a href="media/demo.mp4">Download the demo video</a>
+      </video>
+      <p class="note">
+        Preview a component, edit its Dart source, try different themes and text sizes, then inspect
+        it. Browser previews use an interpreter; the iOS comparison runs the DartNative engine.
+      </p>
+      <nav aria-label="Project links">
+        <a href="https://github.com/tayormi/dartnative-widget-previewer">Get started on GitHub</a>
+        <a href="https://github.com/tayormi/dartnative-widget-previewer/blob/main/docs/PREVIEWS.md"
+          >Preview guide</a
+        >
+        <a href="media/demo.mp4" download>Download video</a>
+      </nav>
+    </main>
+  </body>
+</html>
