@@ -1,0 +1,19 @@
+WEBVTT
+
+00:00.350 --> 00:03.550
+Add an annotation to preview a DartNative widget.
+
+00:06.350 --> 00:10.750
+Edit your Dart code and save. The browser preview updates with your change.
+
+00:13.350 --> 00:18.070
+Check light and dark modes, larger text, and different preview sizes.
+
+00:20.350 --> 00:24.350
+Select a widget to inspect its bounds, then jump to the source.
+
+00:26.350 --> 00:29.390
+Run the same component in the native iOS engine.
+
+00:31.050 --> 00:33.130
+DartNative Widget Previewer.

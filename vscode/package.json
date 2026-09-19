@@ -1,0 +1,156 @@
+{
+  "name": "dartnative-widget-previewer",
+  "displayName": "DartNative Widget Previewer",
+  "description": "Preview DartNative widgets in the browser runtime, then verify them with actual iOS rendering.",
+  "version": "0.1.0",
+  "publisher": "native-lab",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "./extension.cjs",
+  "activationEvents": [
+    "onLanguage:dart"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Native previews compile and run code from this workspace."
+    },
+    "virtualWorkspaces": false
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "dartnativePreview.open",
+        "title": "Open Widget Previewer",
+        "category": "DartNative",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "dartnativePreview.select",
+        "title": "Select Widget Preview",
+        "category": "DartNative"
+      },
+      {
+        "command": "dartnativePreview.reload",
+        "title": "Reload Widget Preview",
+        "category": "DartNative"
+      },
+      {
+        "command": "dartnativePreview.reset",
+        "title": "Reset Widget Preview",
+        "category": "DartNative"
+      },
+      {
+        "command": "dartnativePreview.restart",
+        "title": "Restart Preview App",
+        "category": "DartNative"
+      },
+      {
+        "command": "dartnativePreview.stop",
+        "title": "Stop Widget Previewer",
+        "category": "DartNative"
+      },
+      {
+        "command": "dartnativePreview.native",
+        "title": "Run Preview on iOS",
+        "category": "DartNative"
+      },
+      {
+        "command": "dartnativePreview.sidebar",
+        "title": "Open Widget Preview Sidebar",
+        "category": "DartNative",
+        "icon": "$(preview)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "dartnativePreview.open",
+          "when": "resourceExtname == .dart && isWorkspaceTrusted",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DartNative Widget Previewer",
+      "properties": {
+        "dartnativePreview.toolPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine-overridable",
+          "description": "Absolute path to the installed dartnative-previewer companion directory."
+        },
+        "dartnativePreview.dnPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine-overridable",
+          "description": "Optional SDK bin/dn override. Otherwise reuse the companion setup configuration or PATH."
+        },
+        "dartnativePreview.nodePath": {
+          "type": "string",
+          "default": "node",
+          "scope": "machine-overridable",
+          "description": "Node.js 22 or later executable for the companion controller."
+        },
+        "dartnativePreview.deviceId": {
+          "type": "string",
+          "default": "",
+          "scope": "resource",
+          "description": "iOS simulator UDID. If empty, choose an available simulator when running a native preview."
+        },
+        "dartnativePreview.port": {
+          "type": "number",
+          "default": 5196,
+          "minimum": 1024,
+          "maximum": 65535,
+          "scope": "resource",
+          "description": "Loopback port for the companion controller."
+        },
+        "dartnativePreview.followActiveFile": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Filter the preview catalog to the active Dart source file when it contains previews."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "dartnativePreview",
+          "title": "DartNative Widget Preview",
+          "icon": "preview.svg"
+        }
+      ]
+    },
+    "views": {
+      "dartnativePreview": [
+        {
+          "id": "dartnativePreview.sidebar",
+          "name": "DartNative Widget Preview",
+          "type": "webview",
+          "when": "isWorkspaceTrusted"
+        }
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tayormi/dartnative-widget-previewer.git",
+    "directory": "vscode"
+  },
+  "homepage": "https://github.com/tayormi/dartnative-widget-previewer#readme",
+  "bugs": {
+    "url": "https://github.com/tayormi/dartnative-widget-previewer/issues"
+  },
+  "icon": "icon.png"
+}

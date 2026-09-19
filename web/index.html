@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DartNative Widget Previewer</title>
+    <link rel="icon" type="image/png" href="/dartnative-logo.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/vendor/preview.css" />
+  </head>
+  <body>
+    <header>
+      <img class="brand-logo" src="/dartnative-logo.png" width="28" height="28" alt="" />
+      <strong>DartNative Preview</strong><span id="project"></span>
+      <span class="header-space"></span>
+      <span
+        id="renderer-label"
+        class="mode-badge"
+        title="Interpreted browser preview. Run on iOS to check native rendering."
+        >Browser</span
+      >
+      <span id="status" role="status">Connecting…</span>
+    </header>
+    <div id="browser-toolbar" class="browser-toolbar">
+      <div class="searchbar">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search previews"
+          aria-label="Search previews"
+        />
+        <select id="filter-kind" aria-label="Search by">
+          <option value="all">All</option>
+          <option value="name">Name</option>
+          <option value="group">Group</option>
+          <option value="file">File</option>
+          <option value="uri">Package / URI</option>
+        </select>
+        <span id="count" aria-label="Preview count">0</span>
+      </div>
+      <button
+        id="stop-background"
+        data-action="native-stop"
+        hidden
+        title="Stop the iOS session running in the background"
+      >
+        Stop iOS
+      </button>
+    </div>
+    <div id="notice" role="status" hidden></div>
+    <main id="gallery" aria-label="Widget previews"></main>
+    <section id="empty" class="empty" hidden>
+      <strong id="empty-title">No previews yet</strong>
+      <p id="empty-description">Add a @DNPreview factory to a Dart file in lib/.</p>
+      <button id="clear-search" hidden>Clear filters</button>
+    </section>
+    <section id="native-panel" hidden>
+      <div class="native-toolbar">
+        <button id="back-browser" title="Return to browser previews; keep iOS running">
+          ← Previews
+        </button>
+        <strong id="native-name"></strong>
+        <button
+          data-action="reset"
+          title="Reset this widget’s state"
+          aria-label="Reset native widget"
+        >
+          ↻
+        </button>
+        <button
+          data-action="restart"
+          title="Restart the native app"
+          aria-label="Restart native app"
+        >
+          Restart
+        </button>
+        <button data-action="native-stop">Stop iOS</button>
+      </div>
+      <p id="native-limits" class="native-limits"></p>
+      <div class="native-stage">
+        <div id="native-placeholder" role="status">
+          <span id="native-progress">Starting iOS…</span>
+        </div>
+        <iframe id="simulator" title="Live iOS simulator" hidden></iframe>
+      </div>
+      <div class="keyboard">
+        <label for="native-input">Keyboard</label>
+        <input
+          id="native-input"
+          type="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="Tap an iOS field, then type here"
+          aria-describedby="input-status"
+        />
+        <span id="input-status" role="status"></span>
+      </div>
+    </section>
+    <details id="diagnostics" hidden>
+      <summary>Console <span id="diagnostic-count"></span></summary>
+      <pre id="errors"></pre>
+      <pre id="logs"></pre>
+    </details>
+    <footer>
+      <div id="view-controls" class="view-controls" aria-label="Preview layout">
+        <button id="grid-view" title="Grid view" aria-label="Grid view" aria-pressed="true">
+          ▦
+        </button>
+        <button id="list-view" title="List view" aria-label="List view" aria-pressed="false">
+          ☷
+        </button>
+      </div>
+      <label id="follow-control"
+        ><input id="follow-file" type="checkbox" checked /> Current file</label
+      >
+      <span class="footer-space"></span>
+      <button
+        id="console-toggle"
+        title="Show console"
+        aria-label="Show console"
+        aria-controls="diagnostics"
+        aria-expanded="false"
+      >
+        Console<span id="console-count"></span>
+      </button>
+      <button
+        id="theme"
+        class="icon-button"
+        title="Switch to dark appearance"
+        aria-label="Switch to dark appearance"
+      >
+        ◐
+      </button>
+      <button
+        data-action="reload"
+        class="icon-button"
+        title="Reload previews"
+        aria-label="Reload previews"
+      >
+        ↻
+      </button>
+    </footer>
+    <dialog id="device-dialog" aria-labelledby="device-title">
+      <form method="dialog">
+        <h2 id="device-title">Run on iOS</h2>
+        <label for="device-select">Simulator</label
+        ><select id="device-select"></select>
+        <p id="device-error" role="status"></p>
+        <div class="dialog-actions">
+          <button value="cancel">Cancel</button><button id="device-run" type="button">Run</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="source-dialog" aria-labelledby="source-title">
+      <form method="dialog" class="source-heading">
+        <h2 id="source-title">Source</h2>
+        <button title="Close source" aria-label="Close source">×</button>
+      </form>
+      <pre id="source-code" tabindex="0"></pre>
+    </dialog>
+    <script type="module" src="/app.js"></script>
+    <template id="preview-card">
+      <article class="preview-card">
+        <div class="card-heading">
+          <strong class="card-title"></strong>
+          <button class="source-link">&lt;/&gt;</button>
+        </div>
+        <div class="card-tools">
+          <button class="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+          <span class="zoom-level"></span>
+          <button class="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+          <button class="fit" title="Fit preview">Fit</button>
+          <button class="brightness" title="Switch widget appearance">◐</button>
+          <button class="settings" aria-label="Preview environment" aria-expanded="false">
+            Aa
+          </button>
+          <button class="inspect" aria-label="Inspect widgets" aria-pressed="false">⌖</button>
+          <button class="reset" title="Reset widget" aria-label="Reset widget">↻</button>
+          <button
+            class="native-button"
+            title="Run this widget with DartNative on an iOS simulator"
+            aria-label="Run on iOS"
+          >
+            iOS ↗
+          </button>
+        </div>
+        <div class="environment-settings" hidden>
+          <label
+            >Width<input class="width" type="number" min="1" max="4096" aria-label="Preview width"
+          /></label>
+          <label
+            >Height<input
+              class="height"
+              type="number"
+              min="1"
+              max="4096"
+              aria-label="Preview height"
+          /></label>
+          <label
+            >Text scale<select class="scale" aria-label="Text scale">
+              <option value="0.85">85%</option>
+              <option value="1">100%</option>
+              <option value="1.3">130%</option>
+              <option value="1.5">150%</option>
+              <option value="2">200%</option>
+              <option value="3">300%</option>
+            </select></label
+          >
+          <label
+            >Locale<input class="locale" placeholder="From annotation" aria-label="Preview locale"
+          /></label>
+          <label
+            >Direction<select class="direction" aria-label="Text direction">
+              <option value="">From annotation</option>
+              <option value="ltr">Left to right</option>
+              <option value="rtl">Right to left</option>
+            </select></label
+          >
+          <button class="defaults">Use annotation</button>
+        </div>
+        <div class="preview-slot">
+          <div class="preview-size"><div class="browser-host"></div></div>
+        </div>
+        <div class="widget-inspector" aria-label="Widget inspector" hidden></div>
+        <div class="card-meta"></div>
+        <span class="update-note" role="status"></span>
+        <p class="card-fault" role="status"></p>
+      </article>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,601 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+/* Preview-only platform defaults. Explicit Dart properties are inline and win. */
+.platform-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #f7f9f7;
+}
+.platform-toolbar label {
+  font-size: 10px;
+  color: #829188;
+}
+.platform-toolbar select {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 9px;
+  background: white;
+  font-size: 11px;
+  color: #456150;
+}
+.phone {
+  --native-accent: #007aff;
+  --native-background: #fff;
+  --native-ink: #1c1c1e;
+  --native-secondary: #8e8e93;
+  --native-field: #f2f2f7;
+  --native-divider: #3c3c4329;
+  --native-on-accent: #fff;
+  --native-tint: #007aff18;
+  --native-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  height: clamp(500px, calc(100vh - 330px), 740px);
+}
+.phone[data-platform='android'] {
+  --native-accent: #6750a4;
+  --native-background: #fffbfe;
+  --native-ink: #1d1b20;
+  --native-secondary: #49454f;
+  --native-field: #e7e0ec;
+  --native-divider: #79747e;
+  --native-tint: #e8def8;
+  --native-font: Roboto, 'Noto Sans', Arial, sans-serif;
+  border-radius: 34px;
+}
+.phone :is(#preview, .context-preview) {
+  font-family: var(--native-font);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--native-ink);
+  font-optical-sizing: auto;
+  letter-spacing: normal;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) {
+  font-size: 16px;
+}
+.phone :is(#preview, .context-preview) button,
+.phone :is(#preview, .context-preview) input {
+  font-family: inherit;
+}
+.phone .device-status {
+  height: 48px;
+  min-height: 48px;
+  background: var(--native-background);
+  color: var(--native-ink);
+  font-family: var(--native-font);
+  font-size: 14px;
+  letter-spacing: -0.3px;
+  padding: 0 22px;
+}
+.phone .home-indicator {
+  background: var(--native-background);
+  height: 22px;
+  min-height: 22px;
+}
+.phone .home-indicator:after {
+  width: 112px;
+  height: 5px;
+  left: calc(50% - 56px);
+  bottom: 7px;
+}
+.phone[data-platform='android'] .island {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  left: calc(50% - 5.5px);
+  top: 12px;
+}
+.phone[data-platform='android'] .device-status {
+  height: 36px;
+  min-height: 36px;
+  font-size: 12px;
+}
+.phone[data-platform='android'] .home-indicator:after {
+  width: 96px;
+  height: 4px;
+  left: calc(50% - 48px);
+}
+.status-symbols {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.signal-bars {
+  width: 15px;
+  height: 11px;
+  background:
+    linear-gradient(to top, currentColor 0 35%, transparent 35%) 0 0/3px 100% no-repeat,
+    linear-gradient(to top, currentColor 0 55%, transparent 55%) 4px 0/3px 100% no-repeat,
+    linear-gradient(to top, currentColor 0 75%, transparent 75%) 8px 0/3px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) 12px 0/3px 100% no-repeat;
+}
+.wifi-mark {
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  transform: rotate(-45deg);
+}
+.battery-mark {
+  width: 21px;
+  height: 11px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  position: relative;
+  background: currentColor;
+  box-shadow: inset 0 0 0 2px var(--native-background);
+}
+.battery-mark:after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 3px;
+  width: 2px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 0 1px 1px 0;
+}
+:is(#preview, .context-preview) .dn-Text {
+  line-height: 1.2;
+}
+:is(#preview, .context-preview) .dn-Icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+:is(#preview, .context-preview) svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+:is(#preview, .context-preview) .app-bar {
+  display: grid;
+  grid-template-columns: minmax(42px, 1fr) auto minmax(42px, 1fr);
+  gap: 6px;
+  padding: 0 12px;
+  border: 0;
+  z-index: 2;
+  flex-shrink: 0;
+  background: transparent;
+}
+:is(#preview, .context-preview) .nav-leading,
+:is(#preview, .context-preview) .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+:is(#preview, .context-preview) .nav-actions {
+  justify-content: flex-end;
+}
+:is(#preview, .context-preview) .nav-title {
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:is(#preview, .context-preview) .nav-title > .dn-Text {
+  display: block;
+}
+:is(#preview, .context-preview) .nav-title > .dn-Text + .dn-Text {
+  font-weight: 400;
+  font-size: 12px;
+}
+:is(#preview, .context-preview) .app-bar .back {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 40px;
+  height: 40px;
+  padding: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffffb3;
+  box-shadow:
+    0 1px 5px #00000016,
+    inset 0 0 0 1px #ffffff90;
+  color: var(--native-accent);
+}
+:is(#preview, .context-preview) .back svg {
+  width: 22px;
+  height: 22px;
+}
+:is(#preview, .context-preview) .app-bar .dn-IconButton {
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #ffffffb3;
+  box-shadow: 0 1px 5px #00000016;
+}
+.phone[data-platform='ios'] :is(#preview, .context-preview) .app-bar .back,
+.phone[data-platform='ios'] :is(#preview, .context-preview) .app-bar .dn-IconButton {
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+}
+.phone[data-platform='ios'] :is(#preview, .context-preview) .app-bar .dn-BarButtonItem {
+  min-height: 44px;
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px #8883;
+  background: #ffffff70;
+  backdrop-filter: blur(14px);
+}
+.phone[data-platform='ios'][data-brightness='dark']
+  :is(#preview, .context-preview)
+  .app-bar
+  :is(.back, .dn-IconButton, .dn-BarButtonItem) {
+  background: #1c1c1eb3;
+  box-shadow: inset 0 0 0 1px #ffffff26;
+  color: var(--native-ink);
+}
+.phone[data-platform='ios'][data-brightness='dark']
+  :is(#preview, .context-preview)
+  .tab-bar
+  button.active {
+  background: #ffffff29;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .app-bar {
+  grid-template-columns: auto 1fr auto;
+  padding: 0 16px;
+  background: var(--native-background);
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .nav-title {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: left;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .app-bar .back,
+.phone[data-platform='android'] :is(#preview, .context-preview) .app-bar .dn-IconButton {
+  background: transparent;
+  box-shadow: none;
+  min-width: 40px;
+  color: var(--native-ink);
+}
+:is(#preview, .context-preview) .app-bar[data-center-title='true'] .nav-title {
+  text-align: center;
+}
+:is(#preview, .context-preview) .app-bar[data-center-title='false'] .nav-title {
+  text-align: left;
+}
+:is(#preview, .context-preview) .preview-button {
+  --control-accent: var(--native-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+  min-height: 38px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--control-accent);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  box-shadow: none;
+  touch-action: manipulation;
+  transition:
+    filter 120ms,
+    transform 120ms,
+    background-color 120ms;
+}
+:is(#preview, .context-preview) .preview-button:active:not(:disabled) {
+  filter: brightness(0.88);
+  transform: scale(0.975);
+}
+:is(#preview, .context-preview) .preview-button[data-variant='filled'] {
+  background: var(--control-accent);
+  color: var(--native-on-accent);
+  font-weight: 600;
+}
+:is(#preview, .context-preview) .preview-button[data-variant='tinted'] {
+  background: var(--native-tint);
+  color: var(--control-accent);
+  font-weight: 600;
+}
+:is(#preview, .context-preview) .preview-button[data-variant='bordered'] {
+  border: 1px solid var(--control-accent);
+}
+:is(#preview, .context-preview) .preview-button[data-variant='gray'] {
+  background: #7676801f;
+}
+:is(#preview, .context-preview) .preview-button[data-variant='glass'],
+:is(#preview, .context-preview) .preview-button[data-variant='clearGlass'],
+:is(#preview, .context-preview) .preview-button[data-variant='prominentGlass'],
+:is(#preview, .context-preview) .preview-button[data-variant='prominentClearGlass'] {
+  background: #ffffff70;
+  border: 1px solid #ffffffbb;
+  border-radius: 24px;
+  box-shadow:
+    0 3px 14px #18223b16,
+    inset 0 1px 1px #fff;
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  color: var(--native-ink);
+}
+:is(#preview, .context-preview) .preview-button[data-variant='prominentGlass'] {
+  background: color-mix(in srgb, var(--control-accent) 80%, transparent);
+  color: #fff;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .preview-button {
+  min-height: 40px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  letter-spacing: 0.1px;
+}
+.phone[data-platform='android']
+  :is(#preview, .context-preview)
+  .preview-button[data-variant='bordered'] {
+  border-color: #79747e;
+}
+.phone[data-platform='android']
+  :is(#preview, .context-preview)
+  .preview-button[data-variant='tinted'] {
+  color: #4a4458;
+}
+:is(#preview, .context-preview) .dn-TextField {
+  background: var(--native-field);
+  color: var(--native-ink);
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 12px;
+  font-size: 17px;
+  min-height: 44px;
+  line-height: 1.3;
+}
+:is(#preview, .context-preview) .dn-TextField::placeholder {
+  color: var(--native-secondary);
+  opacity: 1;
+}
+:is(#preview, .context-preview) .dn-TextField:focus {
+  outline: 2px solid var(--native-accent);
+  outline-offset: 1px;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-TextField {
+  background: var(--native-field);
+  min-height: 56px;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid #49454f;
+  padding: 16px;
+  font-size: 16px;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-TextField:focus {
+  outline: 0;
+  border-bottom: 2px solid var(--native-accent);
+}
+:is(#preview, .context-preview) .dn-Switch {
+  appearance: none;
+  width: 51px;
+  height: 31px;
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #78788029;
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 180ms;
+}
+:is(#preview, .context-preview) .dn-Switch:before {
+  width: 27px;
+  height: 27px;
+  left: 2px;
+  top: 2px;
+  background: var(--switch-thumb, #fff);
+  box-shadow: 0 1px 4px #0003;
+  transition:
+    transform 180ms,
+    width 180ms,
+    height 180ms;
+}
+:is(#preview, .context-preview) .dn-Switch:checked {
+  background: #34c759;
+}
+:is(#preview, .context-preview) .dn-Switch:checked:before {
+  left: 2px;
+  transform: translateX(20px);
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Switch {
+  width: 52px;
+  height: 32px;
+  border: 2px solid #79747e;
+  background: #e6e0e9;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Switch:before {
+  width: 16px;
+  height: 16px;
+  top: 6px;
+  left: 6px;
+  background: var(--switch-thumb, #79747e);
+  box-shadow: none;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Switch:checked {
+  background: var(--native-accent);
+  border-color: var(--native-accent);
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Switch:checked:before {
+  width: 24px;
+  height: 24px;
+  top: 2px;
+  left: 2px;
+  transform: translateX(20px);
+  background: var(--switch-thumb, #eaddff);
+}
+:is(#preview, .context-preview) .dn-Checkbox {
+  --control-accent: var(--native-accent);
+  appearance: none;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin: 4px;
+  border: 1.8px solid #8e8e93;
+  border-radius: 5px;
+  background: transparent;
+  flex-shrink: 0;
+}
+:is(#preview, .context-preview) .dn-Checkbox:checked {
+  background: var(--control-accent);
+  border-color: var(--control-accent);
+}
+:is(#preview, .context-preview) .dn-Checkbox:checked:after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border-color: #49454f;
+  margin: 6px;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Checkbox:checked {
+  border-color: var(--control-accent);
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .dn-Checkbox:checked:after {
+  left: 4px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+}
+:is(#preview, .context-preview) .tab-bar {
+  background: #ffffffc9;
+  backdrop-filter: blur(20px);
+  border: 1px solid #ffffffb3;
+  border-radius: 30px;
+  margin: 5px 10px;
+  box-shadow: 0 3px 14px #00000013;
+  padding: 4px;
+}
+:is(#preview, .context-preview) .tab-bar button {
+  min-height: 52px;
+  padding: 5px 12px;
+  color: #8e8e93;
+  border-radius: 24px;
+}
+:is(#preview, .context-preview) .tab-bar button.active {
+  color: var(--native-accent);
+  background: #78788015;
+}
+:is(#preview, .context-preview) .tab-bar small {
+  font-size: 10px;
+  font-weight: 600;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar {
+  background: #f3edf7;
+  backdrop-filter: none;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+  padding: 8px 0;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar button {
+  border-radius: 16px;
+  min-height: 64px;
+  color: #49454f;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar button.active {
+  background: transparent;
+  color: #1d192b;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar button.active .dn-Icon {
+  background: #e8def8;
+  box-shadow: 0 0 0 8px #e8def8;
+  border-radius: 8px;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar small {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(#preview, .context-preview) button,
+  :is(#preview, .context-preview) input,
+  :is(#preview, .context-preview) input:before {
+    transition: none !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :is(#preview, .context-preview) .tab-bar,
+  :is(#preview, .context-preview) .preview-button[data-variant*='Glass'],
+  :is(#preview, .context-preview) .preview-button[data-variant='glass'] {
+    backdrop-filter: none;
+    background: #f2f2f7;
+  }
+}
+
+.workspace {
+  min-height: 800px;
+}
+@media (max-width: 900px) {
+  .canvas-panel {
+    min-height: 850px;
+  }
+  .source-panel {
+    height: 850px;
+  }
+}
+@media (max-width: 620px) {
+  .source-panel {
+    height: 430px;
+  }
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar button {
+  position: relative;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar button.active:before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: calc(50% - 32px);
+  width: 64px;
+  height: 32px;
+  border-radius: 16px;
+  background: #e8def8;
+}
+.phone[data-platform='android']
+  :is(#preview, .context-preview)
+  .tab-bar
+  .dn-BottomNavigationBarItem {
+  position: relative;
+}
+.phone[data-platform='android'] :is(#preview, .context-preview) .tab-bar button.active .dn-Icon {
+  background: transparent;
+  box-shadow: none;
+}
+.canvas-caption {
+  padding: 0 12px;
+  gap: 6px;
+}
+.canvas-caption .status-dot,
+.canvas-caption button {
+  flex-shrink: 0;
+}
+.canvas-caption #platform-caption {
+  flex: 1;
+  min-width: 0;
+}
+.canvas-caption #render-time {
+  white-space: nowrap;
+}

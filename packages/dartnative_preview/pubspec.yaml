@@ -1,0 +1,8 @@
+name: dartnative_preview
+version: 0.1.0
+publish_to: none
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+dependencies:
+  dartnative: ^1.0.0
+repository: https://github.com/tayormi/dartnative-widget-previewer

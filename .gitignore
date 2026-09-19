@@ -1,0 +1,16 @@
+node_modules/
+.dart_tool/
+.local/
+dist/
+demo/
+*.vsix
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+web/vendor/
+web/fonts/
+web/onnx/
+web/licenses/
+web/parser/bridge.js*

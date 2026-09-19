@@ -1,0 +1,43 @@
+{
+  "name": "dartnative-previewer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node bin/preview.mjs",
+    "test": "node --test test/*.test.mjs",
+    "build:browser": "node scripts/build-browser.mjs",
+    "setup": "node bin/setup.mjs",
+    "doctor": "node bin/doctor.mjs",
+    "demo": "node bin/create-demo.mjs",
+    "build": "node scripts/build.mjs",
+    "build:parser": "node scripts/build-parser.mjs",
+    "package:extension": "node scripts/package-extension.mjs",
+    "package:release": "node scripts/package-release.mjs",
+    "format:check": "prettier --check bin/*.mjs lib/*.mjs scripts/*.mjs test/*.mjs vscode/*.cjs vscode/test/*.cjs web/*.js web/index.html web/style.css runtime/*.{js,css}"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "lottie-web": "5.13.0",
+    "onnxruntime-web": "1.30.0",
+    "serve-sim": "0.1.46",
+    "ws": "8.21.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "4.0.0",
+    "esbuild": "0.28.1",
+    "prettier": "3.9.8"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tayormi/dartnative-widget-previewer.git"
+  },
+  "homepage": "https://github.com/tayormi/dartnative-widget-previewer#readme",
+  "bugs": {
+    "url": "https://github.com/tayormi/dartnative-widget-previewer/issues"
+  }
+}

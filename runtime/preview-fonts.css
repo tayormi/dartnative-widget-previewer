@@ -1,0 +1,7 @@
+@font-face {
+  font-family: NativeLabMaterialRounded;
+  src: url('/fonts/MaterialSymbolsRounded.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}

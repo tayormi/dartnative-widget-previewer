@@ -1,0 +1,228 @@
+/* Hardware illustration surrounds a fixed-size logical screen. Only the whole
+   device scales; typography and app layout never depend on the editor width. */
+.device-meta {
+  padding: 10px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+  color: #829188;
+  flex-shrink: 0;
+}
+.device-meta output {
+  font-variant-numeric: tabular-nums;
+}
+.canvas {
+  padding: 20px 18px 24px;
+}
+.device-stage {
+  position: relative;
+  flex: none;
+}
+.phone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  max-width: none;
+  padding: 10px;
+  border: 2px solid #626365;
+  border-radius: 56px;
+  overflow: visible;
+  background: linear-gradient(110deg, #77797b, #171819 13%, #424345 48%, #161718 80%, #7d7f81);
+  box-shadow:
+    0 0 0 1px #151617,
+    inset 0 0 0 1px #c3c4c580,
+    0 22px 38px -13px #17241c44,
+    0 5px 10px #17241c25;
+}
+.device-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 44px;
+  background: var(--screen-background, var(--native-background));
+  isolation: isolate;
+  box-shadow: 0 0 0 1px #000;
+}
+.phone[data-extends-safe-area='true'] :is(#preview, .context-preview) {
+  overflow: visible;
+}
+.phone :is(.device-status, .home-indicator) {
+  z-index: 40;
+  pointer-events: none;
+}
+.phone[data-platform='android'] {
+  border-radius: 40px;
+  border-color: #7b7b80;
+  background: linear-gradient(110deg, #a1a1a8, #29292d 15%, #55555a 50%, #27272b 85%, #a1a1a8);
+}
+.phone[data-platform='android'] .device-screen {
+  border-radius: 28px;
+}
+.device-hardware {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.device-key {
+  position: absolute;
+  display: block;
+  width: 4px;
+  border-radius: 2px 0 0 2px;
+  background: linear-gradient(90deg, #57585b, #b2b3b5 45%, #48494b);
+  box-shadow: 0 0 0 0.5px #252628;
+}
+.device-key.action {
+  left: -5px;
+  top: 110px;
+  height: 24px;
+}
+.device-key.volume-up {
+  left: -5px;
+  top: 162px;
+  height: 50px;
+}
+.device-key.volume-down {
+  left: -5px;
+  top: 224px;
+  height: 50px;
+}
+.device-key.power {
+  right: -5px;
+  top: 184px;
+  height: 78px;
+  border-radius: 0 2px 2px 0;
+}
+.phone[data-platform='android'] .device-key.action,
+.phone[data-platform='android'] .device-key.volume-down {
+  display: none;
+}
+.phone[data-platform='android'] .device-key.volume-up {
+  left: auto;
+  right: -5px;
+  top: 245px;
+  height: 88px;
+  border-radius: 0 2px 2px 0;
+}
+.phone[data-platform='android'] .device-key.power {
+  top: 146px;
+  height: 52px;
+}
+.device-hardware:before,
+.device-hardware:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  height: 3px;
+  border-left: 2px solid #aaa9a7;
+  border-right: 2px solid #aaa9a7;
+  top: 76px;
+}
+.device-hardware:after {
+  top: auto;
+  bottom: 76px;
+}
+.phone[data-platform='ios'] {
+  --preview-safe-top: 62px;
+  --preview-safe-bottom: 34px;
+}
+.phone .device-status {
+  height: var(--preview-safe-top, 59px);
+  min-height: var(--preview-safe-top, 59px);
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  position: relative;
+}
+.phone .island {
+  top: 11px;
+  width: 122px;
+  height: 35px;
+  left: calc(50% - 61px);
+  background: #09090b;
+  border-radius: 22px;
+  box-shadow: inset 0 0 0 1px #ffffff0a;
+  pointer-events: none;
+}
+.phone .island:after {
+  content: '';
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 35%,
+    #23405b 0,
+    #111d30 25%,
+    #080c15 49%,
+    #181a21 56%,
+    #070709 75%
+  );
+  box-shadow: 0 0 0 1px #111216;
+}
+.phone .status-symbols {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.status-symbols svg {
+  display: block;
+  width: 18px;
+  height: 14px;
+  fill: currentColor;
+}
+.status-symbols .status-battery {
+  width: 27px;
+  height: 14px;
+}
+.phone .home-indicator {
+  height: 34px;
+  min-height: 34px;
+  pointer-events: none;
+}
+.phone .home-indicator:after {
+  width: 134px;
+  height: 5px;
+  left: calc(50% - 67px);
+  bottom: 8px;
+  background: var(--native-ink);
+}
+.phone[data-platform='android'] .device-status {
+  height: 32px;
+  min-height: 32px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.phone[data-platform='android'] .island {
+  width: 15px;
+  height: 15px;
+  top: 9px;
+  left: calc(50% - 7.5px);
+  border-radius: 50%;
+}
+.phone[data-platform='android'] .island:after {
+  width: 9px;
+  height: 9px;
+  top: 3px;
+  right: 3px;
+}
+.phone[data-platform='android'] .home-indicator {
+  height: 24px;
+  min-height: 24px;
+}
+.phone[data-platform='android'] .home-indicator:after {
+  width: 108px;
+  height: 4px;
+  left: calc(50% - 54px);
+  bottom: 8px;
+}

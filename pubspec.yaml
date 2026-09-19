@@ -1,0 +1,11 @@
+name: dartnative_previewer_tool
+publish_to: none
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+dependencies:
+  analyzer: 8.4.1
+  crypto: ^3.0.6
+  path: ^1.9.1
+dev_dependencies:
+  test: ^1.25.0
+repository: https://github.com/tayormi/dartnative-widget-previewer
